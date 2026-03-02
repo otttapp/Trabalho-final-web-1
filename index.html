@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Funcionários - Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div id="notification-container"></div>
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Smart RH</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a id="nav-listar" class="active">Listar</a></li>
+                    <li><a id="nav-inserir">Inserir</a></li>
+                    <li><a id="nav-alterar">Alterar</a></li>
+                    <li><a id="nav-excluir">Excluir</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <p>&copy; 2026</p>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Painel de Controle</h1>
+            </header>
+
+            <div class="content-area">
+                <article class="card" id="listar">
+                    <h2>Listagem de Funcionários</h2>
+                    <div style="overflow-x:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Salário</th>
+                                    <th>Idade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="employee-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav class="pagination" id="pagination-controls"></nav>
+                </article>
+
+                <article class="card" id="inserir">
+                    <h2>Novo Funcionário</h2>
+                    <form id="form-create">
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input type="text" id="name" placeholder="Ex: João Silva" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="salary">Salário:</label>
+                            <input type="number" id="salary" placeholder="Ex: 3500" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="age">Idade:</label>
+                            <input type="number" id="age" placeholder="Ex: 30" required>
+                        </div>
+
+                        <button type="submit">Salvar Funcionário</button>
+                    </form>
+                </article>
+
+                <article class="card" id="alterar">
+                    <h2>Alterar Dados</h2>
+                    <form id="form-update">
+                        <label for="update-id">ID do Funcionário:</label>
+                        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                            <input type="number" id="update-id" style="flex-grow: 1;" required>
+                            <button type="button" id="btn-buscar" style="background: var(--color2);">Buscar</button>
+                        </div>
+
+                        <div id="edit-fields-container" style="display: none;">
+                            <hr style="margin: 25px 0; border: 0; border-top: 2px solid #eee;">
+
+                            <div class="form-group">
+                                <label>Nome Completo:</label>
+                                <input type="text" id="update-name" placeholder="Ex: Maria Souza">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Salário Mensal (R$):</label>
+                                <input type="number" id="update-salary" placeholder="Ex: 4500">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Idade:</label>
+                                <input type="number" id="update-age" placeholder="Ex: 28">
+                            </div>
+
+                            <button type="submit" id="btn-save-update"
+                                style="background: var(--color1); color: #fff; border:none; padding:12px; cursor:pointer; width: 100%; border-radius:4px; font-weight:bold; margin-top:10px;">
+                                SALVAR ALTERAÇÕES
+                            </button>
+                        </div>
+                    </form>
+                </article>
+
+                <article class="card" id="excluir">
+                    <h2>Remover Funcionário</h2>
+                    <form id="form-delete">
+                        <div class="form-group">
+                            <label for="delete-id">Informe o Código (ID) para excluir:</label>
+                            <input type="number" id="delete-id" placeholder="Ex: 1" required>
+                        </div>
+                        <button type="submit" class="btn-delete">Excluir Permanentemente</button>
+                    </form>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
