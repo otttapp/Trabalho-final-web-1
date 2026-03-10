@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function showToast(message, type = 'info') {
-    let container = document.getElementById('top-notification-bar');
+    let container = document.getElementById('top-notification-bar'); // tenta pegar uma, caso nao tenha ele cria
     if (!container) {
         container = document.createElement('div');
         container.id = 'top-notification-bar';
@@ -41,7 +41,7 @@ function showToast(message, type = 'info') {
 
     if (type === 'success') msgBox.style.backgroundColor = '#4CAF50';
     else if (type === 'error') msgBox.style.backgroundColor = '#F44336';
-    else msgBox.style.backgroundColor = '#2196F3';
+    else msgBox.style.backgroundColor = '#2196F3'; // falback
 
     container.appendChild(msgBox);
 
@@ -61,14 +61,14 @@ function showToast(message, type = 'info') {
 
 function mostrarCard(idCard) {
     document.querySelectorAll('.card').forEach(c => c.style.display = 'none');
-    document.querySelectorAll('.navbar a').forEach(a => a.classList.remove('active-nav'));
+    document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active')); // efeito de seleção (remover)
     document.getElementById(idCard).style.display = 'block';
-    document.getElementById(`nav-${idCard}`).classList.add('active-nav');
+    document.getElementById(`nav-${idCard}`).classList.add('active'); // efeito de seleção (ativar)
 }
 
 function configurarNavegacao() {
     ['listar', 'inserir', 'alterar', 'excluir'].forEach(rota => {
-        document.getElementById(`nav-${rota}`).addEventListener('click', () => mostrarCard(rota));
+        document.getElementById(`nav-${rota}`).addEventListener('click', () => mostrarCard(rota)); // fazemos desta forma para nunca "destruir"
     });
 }
 
@@ -243,14 +243,14 @@ async function carregarDados() {
     renderizarTabela();
 }
 
-function saveLocalData(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
-function getLocalData() { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); }
+function saveLocalData(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } // serializa a lista do local storage para guardar
+function getLocalData() { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } // desseraliza a lista do local storage para pegar
 
 function renderizarTabela() {
     const dados = getLocalData();
     tableBody.innerHTML = "";
-    const inicio = (paginaAtual - 1) * itensPorPagina;
-    const itens = dados.slice(inicio, inicio + itensPorPagina);
+    const inicio = (paginaAtual - 1) * itensPorPagina; // paginacao
+    const itens = dados.slice(inicio, inicio + itensPorPagina); // paginacao
 
     itens.forEach(emp => {
         tableBody.innerHTML += `<tr>
